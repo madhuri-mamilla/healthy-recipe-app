@@ -1,0 +1,543 @@
+[
+  {
+    "id": "sprouted-moong-chaat-bowl",
+    "name": "Sprouted Moong Chaat Bowl",
+    "tagline": "Regular chaat swaps fried sev/puri for sprouted moong + roasted peanuts — same tang, way more protein and fiber",
+    "category": "salad",
+    "dietType": "veg",
+    "cookingMethod": "no-cook",
+    "healthySwap": "Sprouted moong + roasted peanuts instead of fried sev/puri",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 0,
+    "ingredients": [
+      { "name": "Sprouted moong", "quantity": "1/2 cup", "unit": "(75g)", "optional": false },
+      { "name": "Boiled potato", "quantity": "1/2", "unit": "medium, diced", "optional": false },
+      { "name": "Onion", "quantity": "1/4", "unit": "small, finely chopped", "optional": false },
+      { "name": "Tomato", "quantity": "1/2", "unit": "medium, deseeded and diced", "optional": false },
+      { "name": "Cucumber", "quantity": "1/2", "unit": "small, diced", "optional": false },
+      { "name": "Roasted peanuts", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Chaat masala", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Lemon juice", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Coriander leaves", "quantity": "1", "unit": "tbsp, chopped", "optional": false },
+      { "name": "Salt", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 228, "protein_g": 10, "carbs_g": 38, "fat_g": 5, "fiber_g": 7 },
+    "prepAhead": [
+      { "task": "Sprout the moong (soak 8 hrs, drain, leave covered at room temp, rinsing once)", "when": "weekend", "storesFor": "1-2 days" },
+      { "task": "Dice onion, tomato, and cucumber and refrigerate", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "If not pre-sprouted, soak moong overnight and let it sprout for 1-2 days (see prep-ahead).",
+      "In a bowl, combine sprouted moong, potato, onion, tomato, and cucumber.",
+      "Add roasted peanuts, chaat masala, and salt.",
+      "Squeeze lemon juice over the mix and toss well.",
+      "Garnish with coriander and serve immediately (don't dress ahead of time or it goes soggy)."
+    ]
+  },
+  {
+    "id": "paneer-tikka-salad",
+    "name": "Paneer Tikka Salad",
+    "tagline": "Restaurant tikka minus the heavy oil — air-fried instead of pan-fried in ghee, served over greens instead of naan",
+    "category": "salad",
+    "dietType": "veg",
+    "cookingMethod": "air-fryer",
+    "healthySwap": "Air-fried instead of pan-fried in ghee, served over greens instead of naan",
+    "servings": 1,
+    "prepTimeMins": 15,
+    "cookTimeMins": 15,
+    "ingredients": [
+      { "name": "Paneer", "quantity": "100", "unit": "g, cubed", "optional": false },
+      { "name": "Hung curd (yogurt)", "quantity": "3", "unit": "tbsp", "optional": false },
+      { "name": "Tikka masala", "quantity": "3/4", "unit": "tbsp", "optional": false },
+      { "name": "Ginger-garlic paste", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Bell pepper", "quantity": "1/2", "unit": "cup, cubed", "optional": false },
+      { "name": "Onion", "quantity": "1/4", "unit": "small, cubed (for skewering)", "optional": false },
+      { "name": "Mixed greens/lettuce", "quantity": "1", "unit": "cup", "optional": false },
+      { "name": "Mint chutney", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Oil", "quantity": "1/2", "unit": "tsp (for air-fryer basket)", "optional": false }
+    ],
+    "macros": { "calories": 357, "protein_g": 22, "carbs_g": 12, "fat_g": 25, "fiber_g": 3 },
+    "prepAhead": [
+      { "task": "Marinate paneer + veggies", "when": "night-before", "storesFor": "" },
+      { "task": "Wash and store greens in an airtight container", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Mix hung curd, tikka masala, ginger-garlic paste, and a pinch of salt in a bowl.",
+      "Add paneer, bell pepper, and onion cubes; coat well. Marinate at least 30 min (ideally overnight).",
+      "Thread onto skewers, or place directly in the air-fryer basket lightly greased with the oil.",
+      "Air-fry at 200°C for 12-15 minutes, turning halfway, until edges char slightly.",
+      "Plate the greens, top with the air-fried paneer and peppers.",
+      "Drizzle mint chutney over the top and serve warm."
+    ]
+  },
+  {
+    "id": "chicken-tikka-protein-salad",
+    "name": "Chicken Tikka Protein Salad",
+    "tagline": "Same tikka marinade logic with chicken breast — high protein, low effort after a long commute",
+    "category": "salad",
+    "dietType": "non-veg",
+    "cookingMethod": "air-fryer",
+    "healthySwap": "Air-fried chicken breast tikka instead of fried/pan-cooked",
+    "servings": 1,
+    "prepTimeMins": 15,
+    "cookTimeMins": 18,
+    "ingredients": [
+      { "name": "Chicken breast", "quantity": "150", "unit": "g, cubed", "optional": false },
+      { "name": "Hung curd", "quantity": "3", "unit": "tbsp", "optional": false },
+      { "name": "Tikka masala", "quantity": "3/4", "unit": "tbsp", "optional": false },
+      { "name": "Ginger-garlic paste", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Lemon juice", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Cucumber", "quantity": "1/2", "unit": "small, sliced", "optional": false },
+      { "name": "Onion", "quantity": "1/4", "unit": "small, thinly sliced", "optional": false },
+      { "name": "Mixed greens", "quantity": "1", "unit": "cup", "optional": false },
+      { "name": "Mint-yogurt dip (curd + mint + salt)", "quantity": "1", "unit": "tbsp", "optional": false }
+    ],
+    "macros": { "calories": 236, "protein_g": 37, "carbs_g": 8, "fat_g": 6, "fiber_g": 1 },
+    "prepAhead": [
+      { "task": "Marinate chicken", "when": "night-before", "storesFor": "" },
+      { "task": "Slice cucumber and onion", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Combine hung curd, tikka masala, ginger-garlic paste, lemon juice, and salt.",
+      "Add chicken cubes, coat thoroughly, and marinate at least 2 hours (ideally overnight, in the fridge).",
+      "Air-fry at 200°C for 15-18 minutes, shaking the basket halfway, until cooked through (internal temp 75°C).",
+      "Toss greens, cucumber, and onion in a bowl.",
+      "Top with the air-fried chicken tikka pieces.",
+      "Serve with mint-yogurt dip on the side."
+    ]
+  },
+  {
+    "id": "beetroot-kathi-roll",
+    "name": "Beetroot Kathi Roll (Paneer Bhurji)",
+    "tagline": "Beetroot-kneaded roti instead of plain maida roti — natural color, extra fiber, no maida",
+    "category": "roll",
+    "dietType": "veg",
+    "cookingMethod": "stovetop",
+    "healthySwap": "Beetroot-kneaded whole wheat roti instead of plain maida roti",
+    "servings": 1,
+    "prepTimeMins": 20,
+    "cookTimeMins": 20,
+    "ingredients": [
+      { "name": "Whole wheat flour", "quantity": "3/4", "unit": "cup (~90g), for the roti", "optional": false },
+      { "name": "Beetroot", "quantity": "1/2", "unit": "small, boiled and pureed (~2 tbsp puree), for the roti", "optional": false },
+      { "name": "Water", "quantity": "as needed", "unit": "to knead, for the roti", "optional": false },
+      { "name": "Salt", "quantity": "a pinch", "unit": "for the roti", "optional": false },
+      { "name": "Paneer", "quantity": "100", "unit": "g, crumbled, for the filling", "optional": false },
+      { "name": "Onion", "quantity": "1/2", "unit": "medium, chopped, for the filling", "optional": false },
+      { "name": "Capsicum", "quantity": "1/4", "unit": "chopped, for the filling", "optional": false },
+      { "name": "Tomato", "quantity": "1/2", "unit": "chopped, for the filling", "optional": false },
+      { "name": "Roll/pav bhaji masala", "quantity": "1/2", "unit": "tsp, for the filling", "optional": false },
+      { "name": "Oil", "quantity": "1.5", "unit": "tsp, for the filling", "optional": false }
+    ],
+    "macros": { "calories": 690, "protein_g": 31, "carbs_g": 79, "fat_g": 30, "fiber_g": 13 },
+    "prepAhead": [
+      { "task": "Knead the beetroot dough and refrigerate", "when": "night-before", "storesFor": "" },
+      { "task": "Chop onion, capsicum, and tomato", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Knead whole wheat flour with beetroot puree, a pinch of salt, and water as needed into a soft dough. Rest 15 min.",
+      "Roll into 2 thin rotis and cook on a hot tawa until light brown spots appear on both sides.",
+      "Heat oil in a pan, sauté onions until translucent, add capsicum and tomato, cook 3-4 min.",
+      "Add crumbled paneer and roll masala, mix well, cook 3-4 min until combined.",
+      "Spoon the bhurji filling onto each roti, roll tightly, and serve warm."
+    ]
+  },
+  {
+    "id": "egg-bhurji-roll-spinach-roti",
+    "name": "Egg Bhurji Roll, Spinach Roti",
+    "tagline": "Spinach-pureed roti sneaks in greens, wrapped around a light egg bhurji",
+    "category": "roll",
+    "dietType": "egg",
+    "cookingMethod": "stovetop",
+    "healthySwap": "Spinach-pureed whole wheat roti sneaks in greens",
+    "servings": 1,
+    "prepTimeMins": 20,
+    "cookTimeMins": 15,
+    "ingredients": [
+      { "name": "Whole wheat flour", "quantity": "3/4", "unit": "cup (~90g), for the roti", "optional": false },
+      { "name": "Spinach", "quantity": "1/2", "unit": "cup, blanched and pureed, for the roti", "optional": false },
+      { "name": "Water", "quantity": "as needed", "unit": "for the roti", "optional": false },
+      { "name": "Salt", "quantity": "a pinch", "unit": "for the roti", "optional": false },
+      { "name": "Eggs", "quantity": "2", "unit": "beaten, for the filling", "optional": false },
+      { "name": "Onion", "quantity": "1/4", "unit": "small, finely chopped, for the filling", "optional": false },
+      { "name": "Green chili", "quantity": "1/2", "unit": "chopped, for the filling", "optional": false },
+      { "name": "Turmeric", "quantity": "a pinch", "unit": "for the filling", "optional": false },
+      { "name": "Oil", "quantity": "1/2", "unit": "tsp, for the filling", "optional": false }
+    ],
+    "macros": { "calories": 488, "protein_g": 25, "carbs_g": 69, "fat_g": 14, "fiber_g": 11 },
+    "prepAhead": [
+      { "task": "Make the spinach roti dough and refrigerate", "when": "night-before", "storesFor": "" },
+      { "task": "Chop onion", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Knead flour with spinach puree and a pinch of salt into a soft dough. Rest 15 min, roll into 2 rotis, and cook on a tawa.",
+      "Heat oil in a pan, sauté onion and green chili until soft.",
+      "Add turmeric and beaten eggs, scramble on medium heat until just cooked.",
+      "Spoon the egg bhurji onto each roti, roll, and serve warm."
+    ]
+  },
+  {
+    "id": "chana-patty-roll",
+    "name": "Chana Patty Roll (Chickpea Burger Filling as a Roll)",
+    "tagline": "The chickpea-patty-instead-of-meat trick, wrapped in a roti instead of a bun",
+    "category": "roll",
+    "dietType": "veg",
+    "cookingMethod": "air-fryer",
+    "healthySwap": "Chickpea patty instead of meat, wrapped in a roti instead of a bun",
+    "servings": 1,
+    "prepTimeMins": 20,
+    "cookTimeMins": 15,
+    "ingredients": [
+      { "name": "Boiled chickpeas", "quantity": "3/4", "unit": "cup", "optional": false },
+      { "name": "Rolled oats", "quantity": "3", "unit": "tbsp, ground coarsely", "optional": false },
+      { "name": "Onion", "quantity": "1/4", "unit": "small, finely chopped", "optional": false },
+      { "name": "Garlic", "quantity": "1", "unit": "clove, minced", "optional": false },
+      { "name": "Cumin powder", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Red chili powder", "quantity": "a pinch", "unit": "", "optional": false },
+      { "name": "Whole wheat rotis", "quantity": "2", "unit": "", "optional": false },
+      { "name": "Mint chutney", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Onion (for topping)", "quantity": "1/4", "unit": "small, thinly sliced", "optional": false },
+      { "name": "Oil spray", "quantity": "as needed", "unit": "for air-fryer", "optional": false }
+    ],
+    "macros": { "calories": 618, "protein_g": 26, "carbs_g": 118, "fat_g": 7, "fiber_g": 23 },
+    "prepAhead": [
+      { "task": "Shape and refrigerate patties, or batch-make and freeze", "when": "weekend", "storesFor": "" }
+    ],
+    "steps": [
+      "Mash chickpeas roughly (leave some texture), mix with ground oats, onion, garlic, cumin, chili powder, and salt.",
+      "Shape into 4 small patties. Refrigerate 20 min to firm up.",
+      "Air-fry at 190°C for 12-15 minutes, flipping halfway, until golden and firm.",
+      "Warm the rotis, spread mint chutney, place patties in each, top with sliced onion, and roll."
+    ]
+  },
+  {
+    "id": "masala-millet-khichdi",
+    "name": "Masala Millet Khichdi",
+    "tagline": "Millet instead of white rice — lower GI, more fiber, same comfort-food feel",
+    "category": "one-pot-rice",
+    "dietType": "veg",
+    "cookingMethod": "one-pot",
+    "healthySwap": "Millet instead of white rice",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 25,
+    "ingredients": [
+      { "name": "Foxtail or barnyard millet", "quantity": "1/2", "unit": "cup", "optional": false },
+      { "name": "Moong dal (split)", "quantity": "1/4", "unit": "cup", "optional": false },
+      { "name": "Mixed vegetables (carrot, beans, peas)", "quantity": "1/2", "unit": "cup, chopped", "optional": false },
+      { "name": "Cumin seeds", "quantity": "1/4", "unit": "tsp", "optional": false },
+      { "name": "Turmeric", "quantity": "a pinch", "unit": "", "optional": false },
+      { "name": "Ghee", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Water", "quantity": "1.75", "unit": "cups", "optional": false },
+      { "name": "Salt", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 600, "protein_g": 23, "carbs_g": 102, "fat_g": 11, "fiber_g": 18 },
+    "prepAhead": [
+      { "task": "Soak millet and dal", "when": "night-before", "storesFor": "" },
+      { "task": "Pre-chop vegetables", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Wash and soak millet and moong dal together for at least 30 min (overnight is better).",
+      "Heat ghee in a pressure cooker or pot, add cumin seeds and let them splutter.",
+      "Add chopped vegetables, sauté 2 min.",
+      "Add drained millet-dal mix, turmeric, salt, and water.",
+      "Pressure cook for 3-4 whistles (or simmer covered for 20-25 min, stirring occasionally, until soft).",
+      "Serve hot, with a small drizzle of ghee on top if desired."
+    ]
+  },
+  {
+    "id": "egg-fried-brown-rice",
+    "name": "Egg Fried Brown Rice, Indian-Spiced",
+    "tagline": "Brown rice instead of white, extra egg-to-rice ratio for protein, minimal oil",
+    "category": "one-pot-rice",
+    "dietType": "egg",
+    "cookingMethod": "one-pot",
+    "healthySwap": "Brown rice instead of white, extra egg for protein, minimal oil",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 10,
+    "ingredients": [
+      { "name": "Cooked brown rice (day-old, chilled)", "quantity": "1.25", "unit": "cups", "optional": false },
+      { "name": "Eggs", "quantity": "1-2", "unit": "", "optional": false },
+      { "name": "Spring onion", "quantity": "2", "unit": "tbsp, chopped (whites and greens separated)", "optional": false },
+      { "name": "Carrot", "quantity": "1/4", "unit": "cup, finely diced", "optional": false },
+      { "name": "Soy sauce", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Garam masala", "quantity": "a pinch", "unit": "", "optional": false },
+      { "name": "Oil", "quantity": "1.5", "unit": "tsp", "optional": false }
+    ],
+    "macros": { "calories": 485, "protein_g": 17, "carbs_g": 67, "fat_g": 16, "fiber_g": 5 },
+    "prepAhead": [
+      { "task": "Cook brown rice and refrigerate", "when": "night-before", "storesFor": "" },
+      { "task": "Dice carrot and spring onion", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Heat oil in a wok or wide pan on high heat.",
+      "Add spring onion whites and carrot, stir-fry 2 min.",
+      "Push veggies to one side, pour beaten egg into the empty space, scramble until just set.",
+      "Add the chilled brown rice, breaking up any clumps.",
+      "Add soy sauce and garam masala, toss everything together on high heat for 3-4 min.",
+      "Garnish with spring onion greens and serve hot."
+    ]
+  },
+  {
+    "id": "chicken-keema-rice",
+    "name": "Chicken Keema Rice, One-Pot",
+    "tagline": "Lean chicken keema instead of mutton, brown rice instead of white, cooked together for minimal cleanup",
+    "category": "one-pot-rice",
+    "dietType": "non-veg",
+    "cookingMethod": "one-pot",
+    "healthySwap": "Lean chicken keema instead of mutton, brown rice instead of white",
+    "servings": 1,
+    "prepTimeMins": 15,
+    "cookTimeMins": 30,
+    "ingredients": [
+      { "name": "Minced chicken (keema)", "quantity": "125", "unit": "g", "optional": false },
+      { "name": "Brown rice", "quantity": "1/2", "unit": "cup", "optional": false },
+      { "name": "Onion", "quantity": "1/2", "unit": "medium, chopped", "optional": false },
+      { "name": "Tomato", "quantity": "1/2", "unit": "medium, chopped", "optional": false },
+      { "name": "Green peas", "quantity": "2", "unit": "tbsp", "optional": false },
+      { "name": "Ginger-garlic paste", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Garam masala", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Oil", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Water", "quantity": "1", "unit": "cup", "optional": false }
+    ],
+    "macros": { "calories": 625, "protein_g": 33, "carbs_g": 81, "fat_g": 18, "fiber_g": 6 },
+    "prepAhead": [
+      { "task": "Marinate keema with ginger-garlic paste and garam masala", "when": "night-before", "storesFor": "" },
+      { "task": "Chop onion and tomato", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Heat oil in a pressure cooker or pot, sauté onions until golden.",
+      "Add ginger-garlic paste, cook 1 min, then add tomato and cook until soft.",
+      "Add chicken keema, garam masala, and salt; cook until the keema changes color (5-6 min).",
+      "Add washed brown rice, peas, and water.",
+      "Pressure cook for 3-4 whistles, or simmer covered for 25-30 min until rice is tender.",
+      "Rest 5 min before serving."
+    ]
+  },
+  {
+    "id": "tandoori-chicken-marinade",
+    "name": "Tandoori Chicken Marinade",
+    "tagline": "Protein-prep focused marinade, reusable across the week",
+    "category": "marinade",
+    "dietType": "non-veg",
+    "cookingMethod": "air-fryer",
+    "healthySwap": "Air-fried or oven-roasted instead of deep-fried, minimal oil marinade",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 20,
+    "ingredients": [
+      { "name": "Chicken (breast or thigh)", "quantity": "150", "unit": "g", "optional": false },
+      { "name": "Thick curd/yogurt", "quantity": "3", "unit": "tbsp", "optional": false },
+      { "name": "Ginger-garlic paste", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Tandoori masala", "quantity": "1", "unit": "tsp", "optional": false },
+      { "name": "Lemon juice", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Mustard oil (or any oil)", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Red chili powder", "quantity": "a pinch", "unit": "", "optional": false },
+      { "name": "Salt", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 228, "protein_g": 35, "carbs_g": 2, "fat_g": 8, "fiber_g": 0 },
+    "prepAhead": [
+      { "task": "Marinate, or batch-marinate and freeze in portions", "when": "night-before", "storesFor": "" },
+      { "task": "Batch-marinate and freeze in portions", "when": "weekend", "storesFor": "" }
+    ],
+    "steps": [
+      "Make small cuts in the chicken pieces to let the marinade penetrate.",
+      "Mix curd, ginger-garlic paste, tandoori masala, lemon juice, oil, chili powder, and salt into a smooth marinade.",
+      "Coat the chicken thoroughly, cover, and refrigerate at least 4 hours (overnight is best).",
+      "Air-fry at 200°C for 18-20 minutes, turning halfway, until charred at the edges and cooked through — OR oven-roast at 220°C for 20-25 min.",
+      "Rest 5 min before serving."
+    ]
+  },
+  {
+    "id": "soya-chaap-marinade",
+    "name": "Soya Chaap Marinade",
+    "tagline": "Protein-prep focused marinade, reusable across the week",
+    "category": "marinade",
+    "dietType": "veg",
+    "cookingMethod": "air-fryer",
+    "healthySwap": "Air-fried or pan-seared with minimal oil instead of deep-fried",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 12,
+    "ingredients": [
+      { "name": "Soya chaap (stick or malai)", "quantity": "150", "unit": "g", "optional": false },
+      { "name": "Thick curd", "quantity": "3", "unit": "tbsp", "optional": false },
+      { "name": "Ginger-garlic paste", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Chaap/tikka masala", "quantity": "1", "unit": "tsp", "optional": false },
+      { "name": "Kasuri methi (dried fenugreek)", "quantity": "1/2", "unit": "tsp, crushed", "optional": false },
+      { "name": "Oil", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Salt", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 261, "protein_g": 30, "carbs_g": 14, "fat_g": 11, "fiber_g": 0 },
+    "prepAhead": [
+      { "task": "Marinate; soya chaap also freezes well pre-marinated", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "If using stick chaap, slice into bite-size pieces.",
+      "Mix curd, ginger-garlic paste, chaap masala, kasuri methi, oil, and salt into a marinade.",
+      "Coat chaap pieces well, refrigerate at least 2 hours (overnight for best flavor).",
+      "Air-fry at 190°C for 12-15 min, turning halfway — OR pan-sear on a hot tawa, 8-10 min, turning occasionally, until charred spots form."
+    ]
+  },
+  {
+    "id": "veggie-loaded-whole-wheat-pasta",
+    "name": "Veggie-Loaded Whole Wheat Pasta",
+    "tagline": "Whole wheat pasta instead of refined, sauce bulked with pureed vegetables instead of heavy cream",
+    "category": "noodles-pasta",
+    "dietType": "veg",
+    "cookingMethod": "stovetop",
+    "healthySwap": "Whole wheat pasta and vegetable-bulked sauce instead of refined pasta and heavy cream",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 20,
+    "ingredients": [
+      { "name": "Whole wheat pasta", "quantity": "100", "unit": "g", "optional": false },
+      { "name": "Tomato", "quantity": "1.5", "unit": "medium, pureed", "optional": false },
+      { "name": "Bell pepper", "quantity": "1/4", "unit": "diced", "optional": false },
+      { "name": "Zucchini", "quantity": "1/4", "unit": "diced", "optional": false },
+      { "name": "Garlic", "quantity": "1.5", "unit": "cloves, minced", "optional": false },
+      { "name": "Dried herbs (oregano, basil)", "quantity": "1/2", "unit": "tsp", "optional": false },
+      { "name": "Olive oil", "quantity": "1.5", "unit": "tsp", "optional": false },
+      { "name": "Salt and pepper", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 450, "protein_g": 16, "carbs_g": 77, "fat_g": 10, "fiber_g": 12 },
+    "prepAhead": [
+      { "task": "Chop all vegetables", "when": "night-before", "storesFor": "" },
+      { "task": "Make the sauce base ahead", "when": "night-before", "storesFor": "up to 2 days" }
+    ],
+    "steps": [
+      "Boil pasta in salted water per package instructions until al dente. Reserve 2 tbsp pasta water, then drain.",
+      "Heat olive oil in a pan, sauté garlic until fragrant.",
+      "Add tomato puree, cook 5-6 min until it thickens slightly.",
+      "Add bell pepper and zucchini, cook 4-5 min until just tender.",
+      "Add dried herbs, salt, and pepper. Stir in the reserved pasta water if the sauce is too thick.",
+      "Toss the cooked pasta into the sauce and mix well. Serve hot."
+    ]
+  },
+  {
+    "id": "schezwan-egg-noodles",
+    "name": "Schezwan Egg Noodles, Lighter Version",
+    "tagline": "Whole wheat noodles, less oil than street-style, extra egg and veg for protein/fiber",
+    "category": "noodles-pasta",
+    "dietType": "egg",
+    "cookingMethod": "stovetop",
+    "healthySwap": "Whole wheat noodles and less oil than street-style, extra egg and veg",
+    "servings": 1,
+    "prepTimeMins": 10,
+    "cookTimeMins": 15,
+    "ingredients": [
+      { "name": "Whole wheat noodles", "quantity": "100", "unit": "g", "optional": false },
+      { "name": "Egg", "quantity": "1", "unit": "beaten", "optional": false },
+      { "name": "Cabbage", "quantity": "1/2", "unit": "cup, shredded", "optional": false },
+      { "name": "Carrot", "quantity": "1/4", "unit": "cup, julienned", "optional": false },
+      { "name": "Spring onion", "quantity": "1", "unit": "tbsp, chopped", "optional": false },
+      { "name": "Schezwan sauce (light/homemade)", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Oil", "quantity": "1.5", "unit": "tsp", "optional": false }
+    ],
+    "macros": { "calories": 517, "protein_g": 19, "carbs_g": 79, "fat_g": 14, "fiber_g": 10 },
+    "prepAhead": [
+      { "task": "Shred cabbage and julienne carrot", "when": "night-before", "storesFor": "" }
+    ],
+    "steps": [
+      "Boil noodles per package instructions until just done, drain, and toss with a few drops of oil to prevent sticking.",
+      "Heat oil in a wok, scramble the egg lightly, remove and set aside.",
+      "In the same wok, stir-fry cabbage and carrot on high heat for 2-3 min (keep it crunchy).",
+      "Add boiled noodles, schezwan sauce, and the scrambled egg back in. Toss everything together for 2 min.",
+      "Garnish with spring onion and serve hot."
+    ]
+  },
+  {
+    "id": "sattu-protein-ladoo",
+    "name": "Sattu Protein Ladoo",
+    "tagline": "Roasted channa sattu + jaggery instead of sugar — batch-friendly, no refined sugar",
+    "category": "snack",
+    "dietType": "veg",
+    "cookingMethod": "no-cook",
+    "healthySwap": "Roasted channa sattu + jaggery instead of refined sugar",
+    "servings": 12,
+    "prepTimeMins": 15,
+    "cookTimeMins": 0,
+    "ingredients": [
+      { "name": "Roasted channa sattu", "quantity": "1.5", "unit": "cups", "optional": false },
+      { "name": "Jaggery", "quantity": "1/2", "unit": "cup, grated or powdered", "optional": false },
+      { "name": "Ghee", "quantity": "3-4", "unit": "tbsp, melted", "optional": false },
+      { "name": "Cardamom powder", "quantity": "1/2", "unit": "tsp", "optional": false }
+    ],
+    "macros": { "calories": 134, "protein_g": 4, "carbs_g": 17, "fat_g": 6, "fiber_g": 2 },
+    "prepAhead": [
+      { "task": "Make a full batch (makes ~12 ladoos)", "when": "weekend", "storesFor": "~5 days at room temp, ~2 weeks refrigerated" }
+    ],
+    "steps": [
+      "Dry-roast the sattu lightly for 2-3 min if not already roasted. Let cool.",
+      "Mix sattu, grated jaggery, and cardamom powder in a large bowl.",
+      "Add melted ghee gradually, mixing with your hands until the mixture holds together when pressed.",
+      "Roll into 12 ladoos (about 20g each).",
+      "Store in an airtight container."
+    ]
+  },
+  {
+    "id": "roasted-makhana-chaat",
+    "name": "Roasted Makhana Chaat",
+    "tagline": "Fox nuts roasted in minimal ghee with chaat masala instead of fried namkeen",
+    "category": "snack",
+    "dietType": "veg",
+    "cookingMethod": "stovetop",
+    "healthySwap": "Fox nuts roasted in minimal ghee instead of fried namkeen",
+    "servings": 2,
+    "prepTimeMins": 5,
+    "cookTimeMins": 10,
+    "ingredients": [
+      { "name": "Makhana (fox nuts)", "quantity": "2", "unit": "cups", "optional": false },
+      { "name": "Ghee", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Chaat masala", "quantity": "1", "unit": "tsp", "optional": false },
+      { "name": "Turmeric", "quantity": "1/4", "unit": "tsp", "optional": false },
+      { "name": "Roasted peanuts", "quantity": "2", "unit": "tbsp", "optional": false },
+      { "name": "Salt", "quantity": "to taste", "unit": "", "optional": false }
+    ],
+    "macros": { "calories": 231, "protein_g": 6, "carbs_g": 32, "fat_g": 9, "fiber_g": 6 },
+    "prepAhead": [
+      { "task": "Batch-roast (makes 2 portions)", "when": "weekend", "storesFor": "~1 week" }
+    ],
+    "steps": [
+      "Heat ghee in a pan on low-medium heat.",
+      "Add makhana and roast, stirring continuously, for 8-10 min until crisp (should sound hollow when tapped).",
+      "Add turmeric, chaat masala, and salt, tossing to coat evenly.",
+      "Mix in roasted peanuts, let cool completely.",
+      "Store in an airtight container once fully cooled (keeps them crisp)."
+    ]
+  },
+  {
+    "id": "ragi-chocolate-energy-bites",
+    "name": "Ragi Chocolate Energy Bites",
+    "tagline": "Ragi flour + dates + cocoa instead of maida + refined sugar — doubles as a pre-workout bite",
+    "category": "dessert",
+    "dietType": "veg",
+    "cookingMethod": "no-cook",
+    "healthySwap": "Ragi flour + dates + cocoa instead of maida + refined sugar",
+    "servings": 14,
+    "prepTimeMins": 15,
+    "cookTimeMins": 0,
+    "ingredients": [
+      { "name": "Ragi (finger millet) flour, lightly roasted", "quantity": "1/2", "unit": "cup", "optional": false },
+      { "name": "Dates", "quantity": "1", "unit": "cup, pitted", "optional": false },
+      { "name": "Cocoa powder (unsweetened)", "quantity": "2", "unit": "tbsp", "optional": false },
+      { "name": "Peanut butter", "quantity": "2", "unit": "tbsp", "optional": false },
+      { "name": "Chia seeds", "quantity": "1", "unit": "tbsp", "optional": false },
+      { "name": "Water", "quantity": "1-2", "unit": "tbsp, if needed", "optional": true }
+    ],
+    "macros": { "calories": 60, "protein_g": 1, "carbs_g": 12, "fat_g": 2, "fiber_g": 2 },
+    "prepAhead": [
+      { "task": "Batch-make (makes ~14 bites)", "when": "weekend", "storesFor": "~1 week refrigerated" }
+    ],
+    "steps": [
+      "Dry-roast ragi flour on low heat for 3-4 min until fragrant. Let cool.",
+      "Soak dates in warm water for 10 min if dry/hard, then drain.",
+      "Blend dates, cocoa powder, and peanut butter into a thick paste.",
+      "Mix in roasted ragi flour and chia seeds until well combined and moldable.",
+      "Roll into 14 small balls (~15g each).",
+      "Refrigerate at least 30 min to firm up before serving."
+    ]
+  }
+]
