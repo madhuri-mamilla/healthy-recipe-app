@@ -18,7 +18,7 @@ Prove out the core browsing experience with real recipe data. No planning, no gr
 - Grid/list of recipe cards (name, category, tagline, macros at a glance).
 - **Diet filter:** toggle — Veg | Non-veg (default: Veg).
   - Veg active → show only `dietType: veg`. A checkbox "Include egg recipes" appears; if checked, also show `dietType: egg`.
-  - Non-veg active → show everything (veg + egg + non-veg); checkbox hidden/irrelevant.
+  - Non-veg active → show only `dietType: non-veg` and `dietType: egg` (not veg); checkbox hidden/irrelevant.
 - **Category filter:** salad, roll, one-pot-rice, marinade, noodles-pasta, snack, dessert (dish-type based — not breakfast/lunch/dinner; meal-slot assignment happens during planning, a later version).
 - **Method filter:** air-fryer, stovetop, one-pot, no-cook, oven.
 - Tapping a card opens Recipe Detail.

@@ -16,7 +16,7 @@ export default function Feed() {
     return recipes.filter((recipe) => {
       const dietMatch =
         dietMode === 'non-veg'
-          ? true
+          ? recipe.dietType === 'non-veg' || recipe.dietType === 'egg'
           : recipe.dietType === 'veg' || (includeEgg && recipe.dietType === 'egg')
       const categoryMatch = category === 'all' || recipe.category === category
       const methodMatch = method === 'all' || recipe.cookingMethod === method
