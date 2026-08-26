@@ -55,14 +55,16 @@ export interface User {
   authProvider: 'placeholder'
 }
 
-export type UserRecipeStatus = 'fav' | 'planned' | 'made_it'
-
 export type MealSlot = 'breakfast' | 'lunch' | 'dinner' | 'snack'
 
-export interface UserRecipeState {
-  userId: string
+export type PlannedMealStatus = 'planned' | 'made_it'
+
+/** One placement of a recipe onto a date + meal slot. A recipe can have
+ * several of these at once (planned more than once across the week). */
+export interface PlannedMeal {
+  id: string
   recipeId: string
-  status: UserRecipeStatus
-  plannedDate: string | null
-  mealSlot: MealSlot | null
+  date: string
+  mealSlot: MealSlot
+  status: PlannedMealStatus
 }

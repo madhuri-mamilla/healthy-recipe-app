@@ -7,13 +7,13 @@ const recipes = recipesData as Recipe[]
 
 export default function RecipeDetail() {
   const { id } = useParams<{ id: string }>()
-  const { isFavorite, toggleFavorite, getPlannedEntry, markMadeIt } = useApp()
+  const { isFavorite, toggleFavorite, getPlannedMealsForRecipe, markMadeIt } = useApp()
   const recipe = recipes.find((r) => r.id === id)
 
   if (!recipe) return <Navigate to="/feed" replace />
 
   const favorited = isFavorite(recipe.id)
-  const plannedEntry = getPlannedEntry(recipe.id)
+  const plannedMeals = getPlannedMealsForRecipe(recipe.id)
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -26,38 +26,43 @@ export default function RecipeDetail() {
           <h1 className="font-display text-2xl font-semibold text-ink">{recipe.name}</h1>
           <p className="text-ink/60 mt-1">{recipe.tagline}</p>
         </div>
-        <div className="shrink-0 flex flex-col items-end gap-2">
-          <button
-            onClick={() => toggleFavorite(recipe.id)}
-            className={`px-4 py-2 rounded-full font-semibold text-sm transition-colors ${
-              favorited
-                ? 'bg-accent-light text-ink border border-accent'
-                : 'bg-accent text-ink hover:brightness-95'
-            }`}
-          >
-            {favorited ? '❤️ Favorited' : 'Add to Favorites'}
-          </button>
-          {plannedEntry?.status === 'planned' && (
-            <button
-              onClick={() => markMadeIt(recipe.id)}
-              className="px-4 py-2 rounded-full font-semibold text-sm bg-ink text-cream hover:brightness-110 transition-[filter]"
-            >
-              Made It
-            </button>
-          )}
-          {plannedEntry?.status === 'made_it' && (
-            <span className="px-4 py-2 rounded-full font-semibold text-sm bg-veg/10 text-veg border border-veg/30">
-              ✓ Made It
-            </span>
-          )}
-        </div>
+        <button
+          onClick={() => toggleFavorite(recipe.id)}
+          className={`shrink-0 px-4 py-2 rounded-full font-semibold text-sm transition-colors ${
+            favorited
+              ? 'bg-accent-light text-ink border border-accent'
+              : 'bg-accent text-ink hover:brightness-95'
+          }`}
+        >
+          {favorited ? '❤️ Favorited' : 'Add to Favorites'}
+        </button>
       </div>
 
-      {plannedEntry && (
-        <p className="mt-2 text-xs font-mono text-ink/50">
-          Planned for {formatPlannedDate(plannedEntry.plannedDate)}
-          {plannedEntry.mealSlot ? ` · ${plannedEntry.mealSlot}` : ''}
-        </p>
+      {plannedMeals.length > 0 && (
+        <ul className="mt-3 space-y-1.5">
+          {plannedMeals.map((meal) => (
+            <li
+              key={meal.id}
+              className="flex items-center justify-between gap-3 text-sm bg-white border border-ink/10 rounded-lg px-3 py-2"
+            >
+              <span className="font-mono text-ink/60 text-xs">
+                {formatPlannedDate(meal.date)} · {meal.mealSlot}
+              </span>
+              {meal.status === 'planned' ? (
+                <button
+                  onClick={() => markMadeIt(meal.id)}
+                  className="px-3 py-1 rounded-full font-semibold text-xs bg-ink text-cream hover:brightness-110 transition-[filter]"
+                >
+                  Made It
+                </button>
+              ) : (
+                <span className="px-3 py-1 rounded-full font-semibold text-xs bg-veg/10 text-veg border border-veg/30">
+                  ✓ Made It
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
       )}
 
       <div className="mt-4 bg-accent-light/40 border border-accent/40 rounded-xl px-4 py-3 text-sm">
@@ -148,8 +153,7 @@ function Macro({ label, value }: { label: string; value: string }) {
   )
 }
 
-function formatPlannedDate(dateKey: string | null): string {
-  if (!dateKey) return ''
+function formatPlannedDate(dateKey: string): string {
   const [y, m, d] = dateKey.split('-').map(Number)
   return new Date(y, m - 1, d).toLocaleDateString(undefined, {
     weekday: 'short',

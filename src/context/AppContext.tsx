@@ -1,15 +1,20 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import type { MealSlot, User, UserRecipeState } from '../types'
+import type { MealSlot, PlannedMeal, User } from '../types'
 
 const USER_STORAGE_KEY = 'rr_user'
 const FAVORITES_STORAGE_KEY = 'rr_favorites'
-const PLANNED_STORAGE_KEY = 'rr_planned'
+const PLANNED_MEALS_STORAGE_KEY = 'rr_planned_meals'
 const BASKET_STORAGE_KEY = 'rr_basket'
 
 const STATIC_TEST_USER: User = {
   id: 'test-user-1',
   name: 'Test User',
   authProvider: 'placeholder',
+}
+
+function generateId(): string {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID()
+  return `pm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
 }
 
 interface AppContextValue {
@@ -21,23 +26,27 @@ interface AppContextValue {
   isFavorite: (recipeId: string) => boolean
   toggleFavorite: (recipeId: string) => void
 
-  // Planning mode: toggled from the "Plan" nav item, turns the feed into a
-  // recipe-picker that adds taps to the basket instead of opening detail.
+  // Planning mode: entered via the Plan screen's "Add recipes" button, turns
+  // the feed into a recipe-picker (stepper cards) instead of a browse list.
   planningMode: boolean
-  togglePlanningMode: () => void
+  enterPlanningMode: () => void
   exitPlanningMode: () => void
 
-  basketIds: string[]
-  isInBasket: (recipeId: string) => boolean
-  toggleBasketItem: (recipeId: string) => void
-  removeFromBasket: (recipeId: string) => void
+  // Basket is a multiset of recipeIds: a recipe can appear more than once,
+  // one entry per not-yet-placed instance. Once placed, an instance becomes
+  // a PlannedMeal and leaves the basket.
+  basketTotal: number
+  basketGroups: { recipeId: string; count: number }[]
+  basketCount: (recipeId: string) => number
+  incrementBasketItem: (recipeId: string) => void
+  decrementBasketItem: (recipeId: string) => void
 
-  // One active planned/made_it entry per recipe. Placing a recipe that
-  // already has an entry moves it to the new date/slot.
-  getPlannedEntry: (recipeId: string) => UserRecipeState | undefined
-  getEntriesForCell: (plannedDate: string, mealSlot: MealSlot) => UserRecipeState[]
-  placeRecipe: (recipeId: string, plannedDate: string, mealSlot: MealSlot) => void
-  markMadeIt: (recipeId: string) => void
+  plannedMeals: PlannedMeal[]
+  getPlannedMealsForRecipe: (recipeId: string) => PlannedMeal[]
+  getEntriesForCell: (date: string, mealSlot: MealSlot) => PlannedMeal[]
+  placeRecipe: (recipeId: string, date: string, mealSlot: MealSlot) => void
+  markMadeIt: (plannedMealId: string) => void
+  removePlannedMeal: (plannedMealId: string) => void
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
@@ -51,15 +60,21 @@ function loadJSON<T>(key: string, fallback: T): T {
   }
 }
 
+/** Tolerates the pre-2.1 favorites shape (an array of {recipeId, ...} rows). */
+function loadFavoriteIds(): string[] {
+  const raw = loadJSON<unknown[]>(FAVORITES_STORAGE_KEY, [])
+  return raw.map((item) =>
+    typeof item === 'string' ? item : (item as { recipeId: string }).recipeId,
+  )
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => loadJSON(USER_STORAGE_KEY, null))
-  const [favorites, setFavorites] = useState<UserRecipeState[]>(() =>
-    loadJSON(FAVORITES_STORAGE_KEY, []),
+  const [favoriteIds, setFavoriteIds] = useState<string[]>(loadFavoriteIds)
+  const [plannedMeals, setPlannedMeals] = useState<PlannedMeal[]>(() =>
+    loadJSON(PLANNED_MEALS_STORAGE_KEY, []),
   )
-  const [planned, setPlanned] = useState<UserRecipeState[]>(() =>
-    loadJSON(PLANNED_STORAGE_KEY, []),
-  )
-  const [basketIds, setBasketIds] = useState<string[]>(() => loadJSON(BASKET_STORAGE_KEY, []))
+  const [basket, setBasket] = useState<string[]>(() => loadJSON(BASKET_STORAGE_KEY, []))
   const [planningMode, setPlanningMode] = useState(false)
 
   useEffect(() => {
@@ -71,81 +86,74 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [user])
 
   useEffect(() => {
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites))
-  }, [favorites])
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoriteIds))
+  }, [favoriteIds])
 
   useEffect(() => {
-    localStorage.setItem(PLANNED_STORAGE_KEY, JSON.stringify(planned))
-  }, [planned])
+    localStorage.setItem(PLANNED_MEALS_STORAGE_KEY, JSON.stringify(plannedMeals))
+  }, [plannedMeals])
 
   useEffect(() => {
-    localStorage.setItem(BASKET_STORAGE_KEY, JSON.stringify(basketIds))
-  }, [basketIds])
+    localStorage.setItem(BASKET_STORAGE_KEY, JSON.stringify(basket))
+  }, [basket])
 
   const login = () => setUser(STATIC_TEST_USER)
   const logout = () => setUser(null)
 
-  const favoriteIds = useMemo(() => favorites.map((f) => f.recipeId), [favorites])
   const isFavorite = (recipeId: string) => favoriteIds.includes(recipeId)
 
   const toggleFavorite = (recipeId: string) => {
     if (!user) return
-    setFavorites((prev) => {
-      const exists = prev.some((f) => f.recipeId === recipeId)
-      if (exists) return prev.filter((f) => f.recipeId !== recipeId)
-      const entry: UserRecipeState = {
-        userId: user.id,
-        recipeId,
-        status: 'fav',
-        plannedDate: null,
-        mealSlot: null,
-      }
-      return [...prev, entry]
-    })
-  }
-
-  const togglePlanningMode = () => setPlanningMode((prev) => !prev)
-  const exitPlanningMode = () => setPlanningMode(false)
-
-  const isInBasket = (recipeId: string) => basketIds.includes(recipeId)
-
-  const toggleBasketItem = (recipeId: string) => {
-    setBasketIds((prev) =>
+    setFavoriteIds((prev) =>
       prev.includes(recipeId) ? prev.filter((id) => id !== recipeId) : [...prev, recipeId],
     )
   }
 
-  const removeFromBasket = (recipeId: string) => {
-    setBasketIds((prev) => prev.filter((id) => id !== recipeId))
-  }
+  const enterPlanningMode = () => setPlanningMode(true)
+  const exitPlanningMode = () => setPlanningMode(false)
 
-  const getPlannedEntry = (recipeId: string) => planned.find((p) => p.recipeId === recipeId)
+  const basketCount = (recipeId: string) => basket.filter((id) => id === recipeId).length
 
-  const getEntriesForCell = (plannedDate: string, mealSlot: MealSlot) =>
-    planned.filter((p) => p.plannedDate === plannedDate && p.mealSlot === mealSlot)
+  const basketGroups = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const id of basket) counts.set(id, (counts.get(id) ?? 0) + 1)
+    return Array.from(counts, ([recipeId, count]) => ({ recipeId, count }))
+  }, [basket])
 
-  const placeRecipe = (recipeId: string, plannedDate: string, mealSlot: MealSlot) => {
-    if (!user) return
-    setPlanned((prev) => {
-      const existing = prev.find((p) => p.recipeId === recipeId)
-      const entry: UserRecipeState = {
-        userId: user.id,
-        recipeId,
-        status: 'planned',
-        plannedDate,
-        mealSlot,
-      }
-      if (existing) return prev.map((p) => (p.recipeId === recipeId ? entry : p))
-      return [...prev, entry]
+  const incrementBasketItem = (recipeId: string) => setBasket((prev) => [...prev, recipeId])
+
+  const decrementBasketItem = (recipeId: string) => {
+    setBasket((prev) => {
+      const index = prev.lastIndexOf(recipeId)
+      if (index === -1) return prev
+      return [...prev.slice(0, index), ...prev.slice(index + 1)]
     })
-    removeFromBasket(recipeId)
   }
 
-  const markMadeIt = (recipeId: string) => {
-    setPlanned((prev) =>
-      prev.map((p) => (p.recipeId === recipeId ? { ...p, status: 'made_it' } : p)),
+  const getPlannedMealsForRecipe = (recipeId: string) =>
+    plannedMeals.filter((p) => p.recipeId === recipeId)
+
+  const getEntriesForCell = (date: string, mealSlot: MealSlot) =>
+    plannedMeals.filter((p) => p.date === date && p.mealSlot === mealSlot)
+
+  const placeRecipe = (recipeId: string, date: string, mealSlot: MealSlot) => {
+    if (!user || basketCount(recipeId) === 0) return
+    const entry: PlannedMeal = { id: generateId(), recipeId, date, mealSlot, status: 'planned' }
+    setPlannedMeals((prev) => [...prev, entry])
+    decrementBasketItem(recipeId)
+  }
+
+  const markMadeIt = (plannedMealId: string) => {
+    setPlannedMeals((prev) =>
+      prev.map((p) => (p.id === plannedMealId ? { ...p, status: 'made_it' } : p)),
     )
   }
+
+  const removePlannedMeal = (plannedMealId: string) => {
+    setPlannedMeals((prev) => prev.filter((p) => p.id !== plannedMealId))
+  }
+
+  const basketTotal = basket.length
 
   const value: AppContextValue = {
     user,
@@ -155,16 +163,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     isFavorite,
     toggleFavorite,
     planningMode,
-    togglePlanningMode,
+    enterPlanningMode,
     exitPlanningMode,
-    basketIds,
-    isInBasket,
-    toggleBasketItem,
-    removeFromBasket,
-    getPlannedEntry,
+    basketTotal,
+    basketGroups,
+    basketCount,
+    incrementBasketItem,
+    decrementBasketItem,
+    plannedMeals,
+    getPlannedMealsForRecipe,
     getEntriesForCell,
     placeRecipe,
     markMadeIt,
+    removePlannedMeal,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

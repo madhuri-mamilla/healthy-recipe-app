@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
 export default function FloatingBasket() {
-  const { planningMode, basketIds, exitPlanningMode } = useApp()
+  const { planningMode, basketTotal, exitPlanningMode } = useApp()
   const navigate = useNavigate()
 
   if (!planningMode) return null
@@ -22,16 +22,19 @@ export default function FloatingBasket() {
           <span className="relative text-2xl leading-none" aria-hidden="true">
             🍱
             <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-accent text-ink text-[11px] font-mono font-bold flex items-center justify-center">
-              {basketIds.length}
+              {basketTotal}
             </span>
           </span>
           <span className="text-sm text-cream/80 hidden sm:inline">
-            {basketIds.length === 1 ? '1 recipe' : `${basketIds.length} recipes`}
+            {basketTotal === 1 ? '1 recipe' : `${basketTotal} recipes`}
           </span>
         </div>
 
         <button
-          onClick={() => navigate('/plan')}
+          onClick={() => {
+            exitPlanningMode()
+            navigate('/plan')
+          }}
           className="px-4 py-2 rounded-full bg-accent text-ink text-sm font-semibold hover:brightness-95 transition-[filter]"
         >
           Continue

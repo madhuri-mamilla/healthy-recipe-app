@@ -26,13 +26,20 @@ const DIET_STYLES: Record<Recipe['dietType'], string> = {
 
 interface RecipeCardProps {
   recipe: Recipe
-  /** Planning mode: tapping the card adds/removes it from the basket instead of opening detail. */
+  /** Planning mode: a stepper replaces the tap-to-open-detail behavior. */
   selectable?: boolean
-  selected?: boolean
-  onToggleSelect?: () => void
+  count?: number
+  onIncrement?: () => void
+  onDecrement?: () => void
 }
 
-export default function RecipeCard({ recipe, selectable, selected, onToggleSelect }: RecipeCardProps) {
+export default function RecipeCard({
+  recipe,
+  selectable,
+  count = 0,
+  onIncrement,
+  onDecrement,
+}: RecipeCardProps) {
   const { isFavorite, toggleFavorite } = useApp()
   const favorited = isFavorite(recipe.id)
   const isDessert = recipe.category === 'dessert'
@@ -70,16 +77,11 @@ export default function RecipeCard({ recipe, selectable, selected, onToggleSelec
   return (
     <div
       className={`recipe-card group relative bg-white/80 shadow-sm border transition-shadow ${
-        selectable && selected
+        selectable && count > 0
           ? 'border-accent ring-2 ring-accent/50 bg-accent-light/20'
           : 'border-ink/10 hover:shadow-md'
       }`}
     >
-      {selectable && selected && (
-        <span className="absolute top-3 left-3 z-10 w-6 h-6 rounded-full bg-accent text-ink shadow flex items-center justify-center text-xs font-bold">
-          ✓
-        </span>
-      )}
       <button
         onClick={(e) => {
           e.preventDefault()
@@ -92,9 +94,29 @@ export default function RecipeCard({ recipe, selectable, selected, onToggleSelec
       </button>
 
       {selectable ? (
-        <button type="button" onClick={onToggleSelect} className="block w-full text-left p-4">
+        <div className="p-4">
           {cardBody}
-        </button>
+          <div className="mt-3 flex items-center justify-center gap-4 pt-3 border-t border-ink/10">
+            <button
+              type="button"
+              onClick={onDecrement}
+              disabled={count === 0}
+              aria-label={`Remove one ${recipe.name} from basket`}
+              className="w-8 h-8 rounded-full border border-ink/20 text-ink font-bold flex items-center justify-center disabled:opacity-30 hover:bg-ink/5 transition-colors"
+            >
+              −
+            </button>
+            <span className="font-mono font-semibold text-ink w-5 text-center">{count}</span>
+            <button
+              type="button"
+              onClick={onIncrement}
+              aria-label={`Add one ${recipe.name} to basket`}
+              className="w-8 h-8 rounded-full bg-accent text-ink font-bold flex items-center justify-center hover:brightness-95 transition-[filter]"
+            >
+              +
+            </button>
+          </div>
+        </div>
       ) : (
         <Link to={`/recipe/${recipe.id}`} className="block p-4">
           {cardBody}

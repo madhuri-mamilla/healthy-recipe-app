@@ -8,7 +8,7 @@ import { useApp } from '../context/AppContext'
 const recipes = recipesData as Recipe[]
 
 export default function Feed() {
-  const { planningMode, isInBasket, toggleBasketItem } = useApp()
+  const { planningMode, basketCount, incrementBasketItem, decrementBasketItem } = useApp()
   const [dietMode, setDietMode] = useState<DietMode>('veg')
   const [includeEgg, setIncludeEgg] = useState(false)
   const [category, setCategory] = useState<Category | 'all'>('all')
@@ -31,7 +31,8 @@ export default function Feed() {
       <h1 className="font-display text-2xl font-semibold text-ink mb-1">Recipes</h1>
       {planningMode ? (
         <p className="text-ink/60 mb-6">
-          Tap recipes to add them to your basket, then hit Continue to place them on your plan.
+          Use + / − to add recipes to your basket, then hit Continue to bring them back to your
+          plan.
         </p>
       ) : (
         <p className="text-ink/60 mb-6">Pick something before decision fatigue picks for you.</p>
@@ -60,8 +61,9 @@ export default function Feed() {
               key={recipe.id}
               recipe={recipe}
               selectable={planningMode}
-              selected={isInBasket(recipe.id)}
-              onToggleSelect={() => toggleBasketItem(recipe.id)}
+              count={basketCount(recipe.id)}
+              onIncrement={() => incrementBasketItem(recipe.id)}
+              onDecrement={() => decrementBasketItem(recipe.id)}
             />
           ))}
         </div>
