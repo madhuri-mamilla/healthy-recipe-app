@@ -43,6 +43,12 @@ PlannedMeal {
 ## Fix 4: Terminology
 This is a **website**, not an app — for anywhere this distinction shows up in copy (empty states, headers, etc.), use "website" or just the product name.
 
+## Fix 5: Quick-add to plan from Recipe Detail
+
+**Problem:** planning a recipe you're already looking at on Recipe Detail required leaving the page — back to the feed, into selection mode, through the basket, over to Plan — just to place the one recipe in front of you.
+
+**Fix:** a **"Plan this"** button sits next to "Add to Favorites" on Recipe Detail. Tapping it opens a small popup with a date picker (bounded to the same 7-day window the Plan calendar shows) and a meal-slot selector. Confirming creates a new `PlannedMeal` entry for that recipe immediately — no navigation away from Recipe Detail, and it bypasses the basket/selection-mode flow entirely. The new instance shows up right away in the planned-instances list already on the page, each with its own Made It control per Fix 3.
+
 ---
 
 ## Made It (unchanged from V2, now keyed to PlannedMeal instead of UserRecipeState)

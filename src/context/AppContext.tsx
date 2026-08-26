@@ -45,6 +45,8 @@ interface AppContextValue {
   getPlannedMealsForRecipe: (recipeId: string) => PlannedMeal[]
   getEntriesForCell: (date: string, mealSlot: MealSlot) => PlannedMeal[]
   placeRecipe: (recipeId: string, date: string, mealSlot: MealSlot) => void
+  /** Quick-add: creates a PlannedMeal directly, bypassing the basket entirely. */
+  addPlannedMeal: (recipeId: string, date: string, mealSlot: MealSlot) => void
   markMadeIt: (plannedMealId: string) => void
   removePlannedMeal: (plannedMealId: string) => void
 }
@@ -136,11 +138,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const getEntriesForCell = (date: string, mealSlot: MealSlot) =>
     plannedMeals.filter((p) => p.date === date && p.mealSlot === mealSlot)
 
-  const placeRecipe = (recipeId: string, date: string, mealSlot: MealSlot) => {
-    if (!user || basketCount(recipeId) === 0) return
+  const createPlannedMeal = (recipeId: string, date: string, mealSlot: MealSlot) => {
     const entry: PlannedMeal = { id: generateId(), recipeId, date, mealSlot, status: 'planned' }
     setPlannedMeals((prev) => [...prev, entry])
+  }
+
+  const placeRecipe = (recipeId: string, date: string, mealSlot: MealSlot) => {
+    if (!user || basketCount(recipeId) === 0) return
+    createPlannedMeal(recipeId, date, mealSlot)
     decrementBasketItem(recipeId)
+  }
+
+  const addPlannedMeal = (recipeId: string, date: string, mealSlot: MealSlot) => {
+    if (!user) return
+    createPlannedMeal(recipeId, date, mealSlot)
   }
 
   const markMadeIt = (plannedMealId: string) => {
@@ -174,6 +185,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     getPlannedMealsForRecipe,
     getEntriesForCell,
     placeRecipe,
+    addPlannedMeal,
     markMadeIt,
     removePlannedMeal,
   }

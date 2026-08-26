@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import recipesData from '../data/recipes.json'
 import type { Recipe } from '../types'
 import { useApp } from '../context/AppContext'
+import PlanThisPopup from '../components/PlanThisPopup'
 
 const recipes = recipesData as Recipe[]
 
 export default function RecipeDetail() {
   const { id } = useParams<{ id: string }>()
   const { isFavorite, toggleFavorite, getPlannedMealsForRecipe, markMadeIt } = useApp()
+  const [showPlanPopup, setShowPlanPopup] = useState(false)
   const recipe = recipes.find((r) => r.id === id)
 
   if (!recipe) return <Navigate to="/feed" replace />
@@ -26,17 +29,33 @@ export default function RecipeDetail() {
           <h1 className="font-display text-2xl font-semibold text-ink">{recipe.name}</h1>
           <p className="text-ink/60 mt-1">{recipe.tagline}</p>
         </div>
-        <button
-          onClick={() => toggleFavorite(recipe.id)}
-          className={`shrink-0 px-4 py-2 rounded-full font-semibold text-sm transition-colors ${
-            favorited
-              ? 'bg-accent-light text-ink border border-accent'
-              : 'bg-accent text-ink hover:brightness-95'
-          }`}
-        >
-          {favorited ? '❤️ Favorited' : 'Add to Favorites'}
-        </button>
+        <div className="shrink-0 flex flex-col items-end gap-2">
+          <button
+            onClick={() => toggleFavorite(recipe.id)}
+            className={`px-4 py-2 rounded-full font-semibold text-sm transition-colors ${
+              favorited
+                ? 'bg-accent-light text-ink border border-accent'
+                : 'bg-accent text-ink hover:brightness-95'
+            }`}
+          >
+            {favorited ? '❤️ Favorited' : 'Add to Favorites'}
+          </button>
+          <button
+            onClick={() => setShowPlanPopup(true)}
+            className="px-4 py-2 rounded-full font-semibold text-sm border border-ink/15 text-ink hover:bg-ink/5 transition-colors"
+          >
+            Plan this
+          </button>
+        </div>
       </div>
+
+      {showPlanPopup && (
+        <PlanThisPopup
+          recipeId={recipe.id}
+          recipeName={recipe.name}
+          onClose={() => setShowPlanPopup(false)}
+        />
+      )}
 
       {plannedMeals.length > 0 && (
         <ul className="mt-3 space-y-1.5">

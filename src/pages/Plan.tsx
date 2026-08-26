@@ -4,16 +4,10 @@ import recipesData from '../data/recipes.json'
 import type { MealSlot, Recipe } from '../types'
 import { useApp } from '../context/AppContext'
 import { addDays, formatDayLabel, toDateKey } from '../lib/date'
+import { MEAL_SLOTS } from '../lib/mealSlots'
 
 const recipes = recipesData as Recipe[]
 const recipeById = new Map(recipes.map((r) => [r.id, r]))
-
-const MEAL_SLOTS: { value: MealSlot; label: string }[] = [
-  { value: 'breakfast', label: 'Breakfast' },
-  { value: 'lunch', label: 'Lunch' },
-  { value: 'dinner', label: 'Dinner' },
-  { value: 'snack', label: 'Snack' },
-]
 
 export default function Plan() {
   const {
