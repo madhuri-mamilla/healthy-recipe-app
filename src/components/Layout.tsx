@@ -1,13 +1,18 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
+import FloatingBasket from './FloatingBasket'
 
 export default function Layout() {
-  const { user, logout } = useApp()
+  const { user, logout, planningMode, togglePlanningMode, exitPlanningMode } = useApp()
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
+  const pillClass = (active: boolean) =>
     `px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-      isActive ? 'bg-accent text-ink' : 'text-ink/70 hover:bg-ink/5'
+      active ? 'bg-accent text-ink' : 'text-ink/70 hover:bg-ink/5'
     }`
+
+  const onFeed = location.pathname === '/feed'
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -15,10 +20,25 @@ export default function Layout() {
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <span className="font-display font-semibold text-ink text-lg">🌿 Ghar ka Khaana</span>
           <nav className="flex items-center gap-2">
-            <NavLink to="/feed" className={linkClass}>
+            <button
+              onClick={() => {
+                exitPlanningMode()
+                navigate('/feed')
+              }}
+              className={pillClass(onFeed && !planningMode)}
+            >
               Recipes
-            </NavLink>
-            <NavLink to="/favorites" className={linkClass}>
+            </button>
+            <button
+              onClick={() => {
+                togglePlanningMode()
+                navigate('/feed')
+              }}
+              className={pillClass(onFeed && planningMode)}
+            >
+              Plan
+            </button>
+            <NavLink to="/favorites" className={({ isActive }) => pillClass(isActive)}>
               Favorites
             </NavLink>
             {user && (
@@ -32,9 +52,10 @@ export default function Layout() {
           </nav>
         </div>
       </header>
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-6">
+      <main className={`flex-1 max-w-5xl w-full mx-auto px-4 py-6 ${planningMode ? 'pb-24' : ''}`}>
         <Outlet />
       </main>
+      <FloatingBasket />
     </div>
   )
 }

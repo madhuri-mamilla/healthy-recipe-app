@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Feed from './pages/Feed'
 import RecipeDetail from './pages/RecipeDetail'
 import Favorites from './pages/Favorites'
+import Plan from './pages/Plan'
 
 function RequireAuth({ children }: { children: React.ReactElement }) {
   const { user } = useApp()
@@ -50,6 +51,14 @@ export default function App() {
           element={
             <RequireAuth>
               <Favorites />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/plan"
+          element={
+            <RequireAuth>
+              <Plan />
             </RequireAuth>
           }
         />

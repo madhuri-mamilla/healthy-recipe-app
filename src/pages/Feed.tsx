@@ -3,10 +3,12 @@ import recipesData from '../data/recipes.json'
 import type { Category, CookingMethod, Recipe } from '../types'
 import FilterBar, { type DietMode } from '../components/FilterBar'
 import RecipeCard from '../components/RecipeCard'
+import { useApp } from '../context/AppContext'
 
 const recipes = recipesData as Recipe[]
 
 export default function Feed() {
+  const { planningMode, isInBasket, toggleBasketItem } = useApp()
   const [dietMode, setDietMode] = useState<DietMode>('veg')
   const [includeEgg, setIncludeEgg] = useState(false)
   const [category, setCategory] = useState<Category | 'all'>('all')
@@ -27,7 +29,13 @@ export default function Feed() {
   return (
     <div>
       <h1 className="font-display text-2xl font-semibold text-ink mb-1">Recipes</h1>
-      <p className="text-ink/60 mb-6">Pick something before decision fatigue picks for you.</p>
+      {planningMode ? (
+        <p className="text-ink/60 mb-6">
+          Tap recipes to add them to your basket, then hit Continue to place them on your plan.
+        </p>
+      ) : (
+        <p className="text-ink/60 mb-6">Pick something before decision fatigue picks for you.</p>
+      )}
 
       <FilterBar
         dietMode={dietMode}
@@ -48,7 +56,13 @@ export default function Feed() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              selectable={planningMode}
+              selected={isInBasket(recipe.id)}
+              onToggleSelect={() => toggleBasketItem(recipe.id)}
+            />
           ))}
         </div>
       )}

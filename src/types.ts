@@ -57,9 +57,12 @@ export interface User {
 
 export type UserRecipeStatus = 'fav' | 'planned' | 'made_it'
 
+export type MealSlot = 'breakfast' | 'lunch' | 'dinner' | 'snack'
+
 export interface UserRecipeState {
   userId: string
   recipeId: string
   status: UserRecipeStatus
   plannedDate: string | null
+  mealSlot: MealSlot | null
 }
