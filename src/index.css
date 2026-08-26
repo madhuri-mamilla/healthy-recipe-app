@@ -3,5 +3,57 @@
 @tailwind utilities;
 
 body {
-  @apply bg-leaf-50 text-gray-800;
+  @apply bg-cream text-ink font-body;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-display;
+}
+
+/* Spice-tin recipe card: slightly irregular corners, alternating per card
+   so the grid doesn't look machine-stamped from a single template. */
+.recipe-card {
+  border-radius: 22px 8px 20px 10px;
+}
+
+.recipe-card:nth-of-type(even) {
+  border-radius: 8px 20px 10px 22px;
+}
+
+.recipe-card:nth-of-type(3n) {
+  border-radius: 18px 22px 8px 16px;
+}
+
+/* Rotated stamp-style category badge, like ink pressed onto a spice tin. */
+.stamp-badge {
+  transform: rotate(-4deg);
+}
+
+.recipe-card:nth-of-type(even) .stamp-badge {
+  transform: rotate(3deg);
+}
+
+/* Hand-drawn underline that draws in under the recipe name on hover. */
+.recipe-name-underline {
+  position: relative;
+  display: inline;
+}
+
+.recipe-name-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='6' viewBox='0 0 60 6'%3E%3Cpath d='M0 3.5 Q 5 0.5 10 3.5 T 20 3.5 T 30 3.5 T 40 3.5 T 50 3.5 T 60 3.5' fill='none' stroke='%23E7A93C' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 30px 6px;
+  transition: width 0.45s ease;
+}
+
+.group:hover .recipe-name-underline::after {
+  width: 100%;
 }

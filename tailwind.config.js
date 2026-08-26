@@ -4,17 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        leaf: {
-          50: '#f2f9ee',
-          100: '#e0f0d6',
-          500: '#5a9c3f',
-          600: '#487f32',
-          700: '#396527',
+        cream: '#FCF3DE',
+        ink: '#2B1B14',
+        accent: {
+          DEFAULT: '#E7A93C',
+          light: '#F3D9A4',
         },
-        turmeric: {
-          400: '#f2b134',
-          500: '#e29a12',
-        },
+        nonveg: '#B23A2E',
+        veg: '#4B6B3A',
+        plum: '#5B3A5C',
+      },
+      fontFamily: {
+        display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        body: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
     },
   },

@@ -50,8 +50,8 @@ function PillGroup<T extends string>({
           onClick={() => onChange(opt.value)}
           className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
             value === opt.value
-              ? 'bg-leaf-600 border-leaf-600 text-white'
-              : 'bg-white border-gray-200 text-gray-600 hover:border-leaf-300'
+              ? 'bg-accent border-accent text-ink'
+              : 'bg-white border-ink/15 text-ink/60 hover:border-accent/60'
           }`}
         >
           {opt.label}
@@ -74,13 +74,13 @@ export default function FilterBar({
   return (
     <div className="space-y-4 mb-6">
       <div className="flex flex-wrap items-center gap-4">
-        <div className="inline-flex rounded-full border border-leaf-200 p-1 bg-white">
+        <div className="inline-flex rounded-full border border-ink/15 p-1 bg-white">
           {(['veg', 'non-veg'] as DietMode[]).map((mode) => (
             <button
               key={mode}
               onClick={() => onDietModeChange(mode)}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold capitalize transition-colors ${
-                dietMode === mode ? 'bg-leaf-600 text-white' : 'text-leaf-700'
+                dietMode === mode ? 'bg-accent text-ink' : 'text-ink/70'
               }`}
             >
               {mode === 'veg' ? 'Veg' : 'Non-veg'}
@@ -89,12 +89,12 @@ export default function FilterBar({
         </div>
 
         {dietMode === 'veg' && (
-          <label className="flex items-center gap-2 text-sm text-gray-600">
+          <label className="flex items-center gap-2 text-sm text-ink/60">
             <input
               type="checkbox"
               checked={includeEgg}
               onChange={(e) => onIncludeEggChange(e.target.checked)}
-              className="rounded accent-leaf-600"
+              className="rounded accent-accent"
             />
             Include egg recipes
           </label>
@@ -102,12 +102,12 @@ export default function FilterBar({
       </div>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1.5">Category</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink/40 mb-1.5">Category</p>
         <PillGroup options={CATEGORIES} value={category} onChange={onCategoryChange} />
       </div>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1.5">Method</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink/40 mb-1.5">Method</p>
         <PillGroup options={METHODS} value={method} onChange={onMethodChange} />
       </div>
     </div>

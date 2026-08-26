@@ -12,12 +12,25 @@ const CATEGORY_LABELS: Record<Recipe['category'], string> = {
   dessert: 'Dessert',
 }
 
+const DIET_LABELS: Record<Recipe['dietType'], string> = {
+  veg: 'Veg',
+  egg: 'Egg',
+  'non-veg': 'Non-veg',
+}
+
+const DIET_STYLES: Record<Recipe['dietType'], string> = {
+  veg: 'bg-veg text-white',
+  egg: 'bg-accent text-ink',
+  'non-veg': 'bg-nonveg text-white',
+}
+
 export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   const { isFavorite, toggleFavorite } = useApp()
   const favorited = isFavorite(recipe.id)
+  const isDessert = recipe.category === 'dessert'
 
   return (
-    <div className="relative bg-white rounded-2xl shadow-sm border border-leaf-100 overflow-hidden hover:shadow-md transition-shadow">
+    <div className="recipe-card group relative bg-white/80 shadow-sm border border-ink/10 hover:shadow-md transition-shadow">
       <button
         onClick={(e) => {
           e.preventDefault()
@@ -29,15 +42,30 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
         {favorited ? '❤️' : '🤍'}
       </button>
       <Link to={`/recipe/${recipe.id}`} className="block p-4">
-        <span className="inline-block text-xs font-semibold uppercase tracking-wide text-leaf-600 bg-leaf-100 px-2 py-0.5 rounded-full">
+        <span
+          className={`stamp-badge inline-block text-[10px] font-display italic font-semibold uppercase tracking-wide px-2.5 py-1 border rounded-sm ${
+            isDessert ? 'border-plum/50 text-plum' : 'border-ink/30 text-ink/70'
+          }`}
+        >
           {CATEGORY_LABELS[recipe.category]}
         </span>
-        <h3 className="mt-2 font-bold text-gray-900 pr-8">{recipe.name}</h3>
-        <p className="mt-1 text-sm text-gray-500 line-clamp-2">{recipe.tagline}</p>
-        <div className="mt-3 flex items-center gap-3 text-xs text-gray-600">
+
+        <h3 className="mt-3 font-display font-semibold text-lg text-ink pr-8">
+          <span className="recipe-name-underline">{recipe.name}</span>
+        </h3>
+        <p className="mt-1 text-sm text-ink/60 line-clamp-2">{recipe.tagline}</p>
+
+        <div className="mt-3 flex items-center gap-2">
+          <span
+            className={`text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${DIET_STYLES[recipe.dietType]}`}
+          >
+            {DIET_LABELS[recipe.dietType]}
+          </span>
+        </div>
+
+        <div className="mt-3 pt-3 border-t border-dashed border-ink/15 flex items-center gap-3 font-mono text-xs text-ink/70">
           <span>{recipe.macros.calories} cal</span>
           <span>{recipe.macros.protein_g}g protein</span>
-          <span className="capitalize">{recipe.dietType}</span>
         </div>
       </Link>
     </div>

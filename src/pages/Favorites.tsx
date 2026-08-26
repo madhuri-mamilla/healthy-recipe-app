@@ -12,13 +12,13 @@ export default function Favorites() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Favorites</h1>
-      <p className="text-gray-500 mb-6">Recipes you've saved for later.</p>
+      <h1 className="font-display text-2xl font-semibold text-ink mb-1">Favorites</h1>
+      <p className="text-ink/60 mb-6">Recipes you've saved for later.</p>
 
       {favorited.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-400">No favorites yet.</p>
-          <Link to="/feed" className="text-leaf-600 hover:underline text-sm mt-2 inline-block">
+          <p className="text-ink/40">No favorites yet.</p>
+          <Link to="/feed" className="text-ink font-semibold hover:underline text-sm mt-2 inline-block">
             Browse recipes →
           </Link>
         </div>
